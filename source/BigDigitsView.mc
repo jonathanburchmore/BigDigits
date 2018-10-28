@@ -39,6 +39,8 @@ class BigDigitsView extends WatchUi.WatchFace {
         font_hr = WatchUi.loadResource(Rez.Fonts.id_suunto_font_25px);
         
         date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+        since_last_hr = 0;
+
         visible = true;
     }
     
@@ -200,6 +202,7 @@ class BigDigitsView extends WatchUi.WatchFace {
         
         label_datehr.setColor(app.getProperty("DateHRColor"));
 
+        since_last_hr = since_last_hr + 1;
         if (last_hr == null || (since_last_hr >= 3 && activityinfo.currentHeartRate != last_hr)) {
             last_hr = activityinfo.currentHeartRate;
             since_last_hr = 0;
