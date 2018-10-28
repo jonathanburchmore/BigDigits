@@ -23,7 +23,7 @@ class HeartRateGraph extends WatchUi.Drawable {
         
         var fg = app.getProperty("HeartRateGraphColor");
         var bg = app.getProperty("BackgroundColor");
-        
+
         if (buffer == null || fg != lastfg || bg != lastbg) {
             buffer = new Graphics.BufferedBitmap( {
                 :width => width,
@@ -47,7 +47,7 @@ class HeartRateGraph extends WatchUi.Drawable {
         dc.setColor(fg, bg);
         dc.clear();
         dc.setPenWidth(4);
-         
+
         // Graph data
         var hrIterator = ActivityMonitor.getHeartRateHistory(new Time.Duration(3600), false);
         
@@ -67,7 +67,7 @@ class HeartRateGraph extends WatchUi.Drawable {
             scaleY = min_hr;
         }
         else { 
-            scaleY = height / (max_hr - min_hr);
+            scaleY = (height - 4) / (max_hr - min_hr);
         }
 
         var sample = hrIterator.next();
@@ -83,7 +83,7 @@ class HeartRateGraph extends WatchUi.Drawable {
             }
             else {
                 pointX = ((3600 - now.subtract(sample.when).value()) * scaleX);
-                pointY = height - ((sample.heartRate - min_hr) * scaleY);
+                pointY = (height - 2) - ((sample.heartRate - min_hr) * scaleY);
 
                 if (lastPointX == null || lastPointY == null) {
                     dc.drawPoint(pointX, pointY);
