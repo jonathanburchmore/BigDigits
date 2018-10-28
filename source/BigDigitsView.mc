@@ -225,11 +225,11 @@ class BigDigitsView extends WatchUi.WatchFace {
         
         // Seconds
         var clockTime = System.getClockTime();
-        dc.setClip(195, 60, 35, 29);
+        dc.setClip(193, 61, 35, 29);
         dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle(195, 60, 35, 29);
+        dc.fillRectangle(193, 61, 35, 29);
         dc.setColor(app.getProperty("SecondsColor"), app.getProperty("BackgroundColor"));
-        dc.drawText(195, 55, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(193, 56, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
 
         // Heart rate
         var activityinfo = Activity.getActivityInfo();
