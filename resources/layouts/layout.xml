@@ -11,12 +11,11 @@
         <param name="locX">0</param>
         <param name="locY">92</param>
         <param name="width">240</param>
-        <param name="height">60</param>
+        <param name="height">106</param>
     </drawable>
     <label id="Hour" y="32" font="@Fonts.id_delirium_200px" justification="Graphics.TEXT_JUSTIFY_RIGHT" color="Graphics.COLOR_WHITE" />
     <label id="Minutes" x="193" y="34" font="@Fonts.id_delirium_200px" justification="Graphics.TEXT_JUSTIFY_RIGHT" color="Graphics.COLOR_WHITE" />
-    <label id="Seconds" x="193" y="56" font="@Fonts.id_suunto_font_40px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
-    <label id="DayOfWeek" x="195" y="149" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
-    <label id="DayOfMonth" x="195" y="171" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
-    <label id="HeartRate" x="center" y="215" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
+    <label id="Seconds" x="195" y="56" font="@Fonts.id_suunto_font_40px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
+    <label id="Date" x="58" y="210" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
+    <label id="HeartRate" x="182" y="210" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
 </layout>

@@ -13,11 +13,10 @@ class BigDigitsView extends WatchUi.WatchFace {
     var label_minutes;
     var label_hour;
     var label_seconds;
-    var label_dayofweek;
-    var label_dayofmonth;
     var label_battery;
     var label_bluetooth;
     var label_sun;
+    var label_date;
     var label_hr;
 
     var lat;
@@ -110,11 +109,10 @@ class BigDigitsView extends WatchUi.WatchFace {
         label_minutes = View.findDrawableById("Minutes");
         label_hour = View.findDrawableById("Hour");
         label_seconds = View.findDrawableById("Seconds");
-        label_dayofweek = View.findDrawableById("DayOfWeek");
-        label_dayofmonth = View.findDrawableById("DayOfMonth");
         label_battery = View.findDrawableById("Battery");
         label_bluetooth = View.findDrawableById("Bluetooth");
         label_sun = View.findDrawableById("Sun");
+        label_date = View.findDrawableById("Date");
         label_hr = View.findDrawableById("HeartRate");
     }
 
@@ -150,11 +148,8 @@ class BigDigitsView extends WatchUi.WatchFace {
         label_seconds.setText(clockTime.sec.format("%02d"));
 
         var date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        label_dayofweek.setColor(app.getProperty("DayOfWeekColor"));
-        label_dayofweek.setText(date.day_of_week);
-
-        label_dayofmonth.setColor(app.getProperty("DayOfMonthColor"));
-        label_dayofmonth.setText(date.day.format("%d"));
+        label_date.setColor(app.getProperty("DayOfWeekColor"));
+        label_date.setText(Lang.format("$1$ $2$", [date.day_of_week, date.day.format("%d")]));
 
         // Battery level        
         var stats = System.getSystemStats();
@@ -212,7 +207,7 @@ class BigDigitsView extends WatchUi.WatchFace {
         else {
             label_hr.setText(Lang.format("* $1$", [activityinfo.currentHeartRate]));
         }
-        
+
         since_last_hr = 0;
         last_hr = activityinfo.currentHeartRate;
 
@@ -222,14 +217,14 @@ class BigDigitsView extends WatchUi.WatchFace {
 
     function onPartialUpdate(dc) {
         var app = Application.getApp();
-        
+
         // Seconds
         var clockTime = System.getClockTime();
-        dc.setClip(193, 61, 35, 29);
+        dc.setClip(195, 61, 35, 29);
         dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle(193, 61, 35, 29);
+        dc.fillRectangle(195, 61, 35, 29);
         dc.setColor(app.getProperty("SecondsColor"), app.getProperty("BackgroundColor"));
-        dc.drawText(193, 56, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(195, 56, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
 
         // Heart rate
         var activityinfo = Activity.getActivityInfo();
@@ -238,12 +233,12 @@ class BigDigitsView extends WatchUi.WatchFace {
             last_hr = activityinfo.currentHeartRate;
             since_last_hr = 0;
             
-            dc.setClip(90, 204, 65, 25);
+            dc.setClip(123, 199, 65, 25);
             dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(90, 204, 65, 25);
+            dc.fillRectangle(123, 199, 65, 25);
             if (activityinfo.currentHeartRate != null) {
                 dc.setColor(app.getProperty("HeartRateColor"), app.getProperty("BackgroundColor"));
-                   dc.drawText(120, 215, font_hr, Lang.format("* $1$", [activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
+                dc.drawText(182, 210, font_hr, Lang.format("* $1$", [activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER); 
             }
         }
 
