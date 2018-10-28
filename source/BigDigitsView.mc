@@ -238,12 +238,12 @@ class BigDigitsView extends WatchUi.WatchFace {
             last_hr = activityinfo.currentHeartRate;
             since_last_hr = 0;
             
-            dc.setClip(90, 201, 65, 25);
+            dc.setClip(90, 204, 65, 25);
             dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(90, 201, 65, 25);
+            dc.fillRectangle(90, 204, 65, 25);
             if (activityinfo.currentHeartRate != null) {
                 dc.setColor(app.getProperty("HeartRateColor"), app.getProperty("BackgroundColor"));
-                   dc.drawText(120, 212, font_hr, Lang.format("* $1$", [activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
+                   dc.drawText(120, 215, font_hr, Lang.format("* $1$", [activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
             }
         }
 

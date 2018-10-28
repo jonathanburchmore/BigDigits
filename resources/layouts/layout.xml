@@ -18,5 +18,5 @@
     <label id="Seconds" x="193" y="56" font="@Fonts.id_suunto_font_40px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
     <label id="DayOfWeek" x="195" y="149" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
     <label id="DayOfMonth" x="195" y="171" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
-    <label id="HeartRate" x="center" y="212" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
+    <label id="HeartRate" x="center" y="215" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
 </layout>
