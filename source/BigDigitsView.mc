@@ -199,16 +199,18 @@ class BigDigitsView extends WatchUi.WatchFace {
         var activityinfo = Activity.getActivityInfo();
         
         label_datehr.setColor(app.getProperty("DateHRColor"));
+
+        if (last_hr == null || (since_last_hr >= 3 && activityinfo.currentHeartRate != last_hr)) {
+            last_hr = activityinfo.currentHeartRate;
+            since_last_hr = 0;
+        }
         
-        if (activityinfo.currentHeartRate == null) {
+        if (last_hr == null) {
             label_datehr.setText(Lang.format("$1$ $2$", [date.day_of_week, date.day.format("%d")]));
         }
         else {
-            label_datehr.setText(Lang.format("$1$ $2$  * $3$", [date.day_of_week, date.day.format("%d"), activityinfo.currentHeartRate]));
+            label_datehr.setText(Lang.format("$1$ $2$  * $3$", [date.day_of_week, date.day.format("%d"), last_hr]));
         }
-
-        since_last_hr = 0;
-        last_hr = activityinfo.currentHeartRate;
 
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
