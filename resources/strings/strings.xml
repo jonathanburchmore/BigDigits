@@ -8,10 +8,8 @@
     <string id="HourColor">Hour</string>
     <string id="MinutesColor">Minutes</string>
     <string id="SecondsColor">Seconds</string>
-    <string id="DayOfWeekColor">Day of Week</string>
-    <string id="DayOfMonthColor">Day of Month</string>
     <string id="HeartRateGraphColor">Heart Rate Graph</string>
-    <string id="HeartRateColor">Heart Rate</string>
+    <string id="DateHRColor">Date and Heart Rate</string>
 
     <string id="x000000">0x000000</string>
     <string id="x000055">0x000055</string>

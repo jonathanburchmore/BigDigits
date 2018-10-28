@@ -16,6 +16,5 @@
     <label id="Hour" y="32" font="@Fonts.id_delirium_200px" justification="Graphics.TEXT_JUSTIFY_RIGHT" color="Graphics.COLOR_WHITE" />
     <label id="Minutes" x="193" y="34" font="@Fonts.id_delirium_200px" justification="Graphics.TEXT_JUSTIFY_RIGHT" color="Graphics.COLOR_WHITE" />
     <label id="Seconds" x="195" y="56" font="@Fonts.id_suunto_font_40px" justification="Graphics.TEXT_JUSTIFY_LEFT" color="Graphics.COLOR_WHITE" />
-    <label id="Date" x="58" y="210" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
-    <label id="HeartRate" x="182" y="210" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
+    <label id="DateHR" x="center" y="210" font="@Fonts.id_suunto_font_25px" justification="Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER" color="Graphics.COLOR_WHITE" />
 </layout>

@@ -16,12 +16,12 @@ class BigDigitsView extends WatchUi.WatchFace {
     var label_battery;
     var label_bluetooth;
     var label_sun;
-    var label_date;
-    var label_hr;
+    var label_datehr;
 
     var lat;
     var lon;
 
+    var date;
     var since_last_hr;
     var last_hr;
 
@@ -38,6 +38,7 @@ class BigDigitsView extends WatchUi.WatchFace {
         font_seconds = WatchUi.loadResource(Rez.Fonts.id_suunto_font_40px);
         font_hr = WatchUi.loadResource(Rez.Fonts.id_suunto_font_25px);
         
+        date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         visible = true;
     }
     
@@ -112,8 +113,7 @@ class BigDigitsView extends WatchUi.WatchFace {
         label_battery = View.findDrawableById("Battery");
         label_bluetooth = View.findDrawableById("Bluetooth");
         label_sun = View.findDrawableById("Sun");
-        label_date = View.findDrawableById("Date");
-        label_hr = View.findDrawableById("HeartRate");
+        label_datehr = View.findDrawableById("DateHR");
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -146,10 +146,6 @@ class BigDigitsView extends WatchUi.WatchFace {
         
         label_seconds.setColor(app.getProperty("SecondsColor"));
         label_seconds.setText(clockTime.sec.format("%02d"));
-
-        var date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        label_date.setColor(app.getProperty("DayOfWeekColor"));
-        label_date.setText(Lang.format("$1$ $2$", [date.day_of_week, date.day.format("%d")]));
 
         // Battery level        
         var stats = System.getSystemStats();
@@ -198,14 +194,17 @@ class BigDigitsView extends WatchUi.WatchFace {
             label_sun.setText(Lang.format("( $1$:$2$", [shortHour(sunrise.hour), sunrise.min.format("%02d")]));
         }
         
-        // Heart rate
+        // Date & Heart rate
+        date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var activityinfo = Activity.getActivityInfo();
-        label_hr.setColor(app.getProperty("HeartRateColor"));
+        
+        label_datehr.setColor(app.getProperty("DateHRColor"));
+        
         if (activityinfo.currentHeartRate == null) {
-            label_hr.setText("");
+            label_datehr.setText(Lang.format("$1$ $2$", [date.day_of_week, date.day.format("%d")]));
         }
         else {
-            label_hr.setText(Lang.format("* $1$", [activityinfo.currentHeartRate]));
+            label_datehr.setText(Lang.format("$1$ $2$  * $3$", [date.day_of_week, date.day.format("%d"), activityinfo.currentHeartRate]));
         }
 
         since_last_hr = 0;
@@ -233,12 +232,12 @@ class BigDigitsView extends WatchUi.WatchFace {
             last_hr = activityinfo.currentHeartRate;
             since_last_hr = 0;
             
-            dc.setClip(123, 199, 65, 25);
+            dc.setClip(56, 199, 128, 25);
             dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(123, 199, 65, 25);
+            dc.fillRectangle(56, 199, 128, 25);
             if (activityinfo.currentHeartRate != null) {
-                dc.setColor(app.getProperty("HeartRateColor"), app.getProperty("BackgroundColor"));
-                dc.drawText(182, 210, font_hr, Lang.format("* $1$", [activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER); 
+                dc.setColor(app.getProperty("DateHRColor"), app.getProperty("BackgroundColor"));
+                dc.drawText(120, 210, font_hr, Lang.format("$1$ $2$  * $3$", [date.day_of_week, date.day.format("%d"), activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
             }
         }
 
