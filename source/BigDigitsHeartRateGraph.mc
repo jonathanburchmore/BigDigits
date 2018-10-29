@@ -5,6 +5,7 @@ using Toybox.System;
 using Toybox.Time;
 using Toybox.Lang;
 using Toybox.ActivityMonitor;
+using Toybox.UserProfile;
 
 class HeartRateGraph extends WatchUi.Drawable {
     var lastfg;
@@ -63,11 +64,22 @@ class HeartRateGraph extends WatchUi.Drawable {
             return;
         }
 
+        var user_min_hr = UserProfile.getProfile().restingHeartRate;
+        var user_max_hr = UserProfile.getHeartRateZones(UserProfile.HR_ZONE_SPORT_GENERIC)[5];
+        
+        if (user_min_hr != null && user_min_hr < min_hr) {
+            min_hr = user_min_hr;
+        }
+        
+        if (user_max_hr != null && user_max_hr > max_hr) {
+            max_hr = user_max_hr;
+        }
+
         if (min_hr == max_hr) {
             scaleY = min_hr;
         }
         else { 
-            scaleY = (height - 4) / (max_hr - min_hr);
+            scaleY = (height - 4.0) / (max_hr - min_hr);
         }
 
         var sample = hrIterator.next();
