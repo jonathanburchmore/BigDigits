@@ -240,8 +240,11 @@ class BigDigitsView extends WatchUi.WatchFace {
             dc.setClip(56, 199, 128, 25);
             dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
             dc.fillRectangle(56, 199, 128, 25);
-            if (activityinfo.currentHeartRate != null) {
                 dc.setColor(app.getProperty("DateHRColor"), app.getProperty("BackgroundColor"));
+	        if (activityinfo.currentHeartRate == null) {
+                dc.drawText(120, 210, font_hr, Lang.format("$1$ $2$", [date.day_of_week, date.day.format("%d")]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
+	        }
+            else {
                 dc.drawText(120, 210, font_hr, Lang.format("$1$ $2$  * $3$", [date.day_of_week, date.day.format("%d"), activityinfo.currentHeartRate]), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER); 
             }
         }
