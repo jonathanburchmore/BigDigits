@@ -38,7 +38,7 @@ class HeartRateGraph extends WatchUi.Drawable {
             lastfg = fg;
             lastbg = bg;
         }
-        else if (lastupdate != null && now.subtract(lastupdate).value() < 60) {
+        else if (lastupdate != null && now.subtract(lastupdate).value() < 30) {
             return;
         }
 
