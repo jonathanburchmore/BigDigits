@@ -35,7 +35,7 @@ class BigDigitsView extends WatchUi.WatchFace {
     function initialize() {
         WatchFace.initialize();
     
-        font_seconds = WatchUi.loadResource(Rez.Fonts.id_suunto_font_40px);
+        font_seconds = WatchUi.loadResource(Rez.Fonts.id_delirium_60px);
         font_hr = WatchUi.loadResource(Rez.Fonts.id_suunto_font_25px);
         
         date = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
@@ -224,11 +224,11 @@ class BigDigitsView extends WatchUi.WatchFace {
 
         // Seconds
         var clockTime = System.getClockTime();
-        dc.setClip(195, 61, 35, 29);
+        dc.setClip(195, 63, 28, 39);
         dc.setColor(app.getProperty("BackgroundColor"), Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle(195, 61, 35, 29);
+        dc.fillRectangle(195, 63, 28, 39);
         dc.setColor(app.getProperty("SecondsColor"), app.getProperty("BackgroundColor"));
-        dc.drawText(195, 56, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(195, 54, font_seconds, clockTime.sec.format("%02d"), Graphics.TEXT_JUSTIFY_LEFT);
 
         // Heart rate
         var activityinfo = Activity.getActivityInfo();
