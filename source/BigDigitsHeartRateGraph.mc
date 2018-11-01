@@ -11,7 +11,6 @@ class HeartRateGraph extends WatchUi.Drawable {
     var lastfg;
     var lastbg;
     var lastupdate;
-    var rightmostsample;
     var buffer;
     
     function initialize(dictionary) {
@@ -46,29 +45,17 @@ class HeartRateGraph extends WatchUi.Drawable {
         lastupdate = now;
         
         var dc = buffer.getDc();
+        dc.setColor(fg, bg);
+        dc.clear();
         dc.setPenWidth(4);
 
         // Graph data
-        var hrIterator = ActivityMonitor.getHeartRateHistory(new Time.Duration(3600), true);
+        var hrIterator = ActivityMonitor.getHeartRateHistory(new Time.Duration(3600), false);
         
         var scaleX;
         var scaleY;
         
         scaleX = width / 3600.0;
-        
-        if (rightmostsample == null) {
-            dc.setColor(fg, bg);
-            dc.clear();
-        }
-        else {
-            var blitwidth = ((3600 - now.subtract(rightmostsample.when).value()) * scaleX);
-            System.println(Lang.format("blitwidth: $1$", [blitwidth]));
-
-            dc.drawBitmap(0 - blitwidth, 0, buffer);
-            dc.setColor(bg, bg);
-            dc.fillRectangle(blitwidth, 0, width - blitwidth, height);
-            dc.setColor(fg, bg);
-        }
 
         var min_hr = hrIterator.getMin();
         var max_hr = hrIterator.getMax();
@@ -96,17 +83,12 @@ class HeartRateGraph extends WatchUi.Drawable {
         }
 
         var sample = hrIterator.next();
-        var mostrecentsample = sample;
         var pointX;
         var pointY;
         var lastPointX = null;
         var lastPointY = null;
-
+        
         while (sample != null) {
-            if (rightmostsample != null && sample.when.compare(rightmostsample.when) <= 0) {
-                break;
-            }
-            
             if (sample.heartRate == ActivityMonitor.INVALID_HR_SAMPLE) {
                 lastPointX = null;
                 lastPointY = null;
@@ -128,8 +110,6 @@ class HeartRateGraph extends WatchUi.Drawable {
             
             sample = hrIterator.next();
         }
-
-        rightmostsample = mostrecentsample;
     }
 
     function draw(dc) {
