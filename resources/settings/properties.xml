@@ -8,7 +8,4 @@
     <property id="SecondsColor" type="number">0xFFFFFF</property>
     <property id="HeartRateGraphColor" type="number">0x550000</property>
     <property id="DateHRColor" type="number">0xFFFFFF</property>
-    
-    <property id="lat" type="double">33.040615</property>
-    <property id="lon" type="double">-116.873421</property>
 </properties>
