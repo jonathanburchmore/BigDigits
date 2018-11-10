@@ -96,10 +96,11 @@ class BigDigitsView extends WatchUi.WatchFace {
     }
     
     function shortHour(hour) {
-        if (!System.getDeviceSettings().is24Hour) {
-            if (hour > 12) {
-                hour = hour - 12;
-            }
+        if (hour == 0) {
+            hour = 12;
+        }
+        else if (hour > 12 && !System.getDeviceSettings().is24Hour) {
+            hour = hour - 12;
         }
         
         return hour;
