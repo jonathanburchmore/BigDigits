@@ -10,6 +10,11 @@
     <string id="SecondsColor">Seconds</string>
     <string id="HeartRateGraphColor">Heart Rate Graph</string>
     <string id="DateHRColor">Date and Heart Rate</string>
+    <string id="NotificationBackground">Notification Background</string>
+    <string id="NotificationForeground">Notification Foreground</string>
+    <string id="StepGoalCenter">Step Goal Center</string>
+    <string id="StepGoalIncomplete">Step Goal Incomplete</string>
+    <string id="StepGoalComplete">Step Goal Complete</string>
 
     <string id="x000000">0x000000</string>
     <string id="x000055">0x000055</string>

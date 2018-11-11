@@ -8,4 +8,9 @@
     <property id="SecondsColor" type="number">0xFFFFFF</property>
     <property id="HeartRateGraphColor" type="number">0x550000</property>
     <property id="DateHRColor" type="number">0xFFFFFF</property>
+    <property id="NotificationBackground" type="number">0xFF0000</property>
+    <property id="NotificationForeground" type="number">0xFFFFFF</property>
+    <property id="StepGoalCenter" type="number">0x000000</property>
+    <property id="StepGoalIncomplete" type="number">0x555555</property>
+    <property id="StepGoalComplete" type="number">0xFFFF00</property>
 </properties>
