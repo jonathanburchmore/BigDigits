@@ -16,6 +16,7 @@ class NotificationCount extends WatchUi.Drawable {
     function draw(dc) {
         var app = Application.getApp();
         var settings = System.getDeviceSettings();
+        var info = ActivityMonitor.getInfo();
         
         if (settings.notificationCount) {
             dc.setColor(app.getProperty("NotificationBackground"), Graphics.COLOR_TRANSPARENT);
@@ -29,16 +30,15 @@ class NotificationCount extends WatchUi.Drawable {
                 dc.drawText(locX, locY - 1, font, settings.notificationCount.format("%d"), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
             }
         }
-        else {
+        else if (info.steps < info.stepGoal) {
             dc.setColor(app.getProperty("StepGoalCenter"), Graphics.COLOR_TRANSPARENT);
             dc.fillCircle(locX, locY, 14);
 
             dc.setPenWidth(4);
 
             dc.setColor(app.getProperty("StepGoalIncomplete"), Graphics.COLOR_TRANSPARENT);
-            dc.drawArc(locX, locY, 12, Graphics.ARC_COUNTER_CLOCKWISE, 90, 90);
+            dc.drawArc(locX, locY, 12, Graphics.ARC_CLOCKWISE, 90, 90);
 
-            var info = ActivityMonitor.getInfo();
             var percentComplete = info.steps.toFloat() / info.stepGoal;
 
             if (percentComplete > 1) {
@@ -46,7 +46,7 @@ class NotificationCount extends WatchUi.Drawable {
             }
             
             var degrees = 360 * percentComplete;
-            if (degrees > 1) {
+            if (degrees >= 1) {
                 var end;
                 
                 if (degrees < 90) {
