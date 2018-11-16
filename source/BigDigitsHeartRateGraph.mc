@@ -144,12 +144,13 @@ class HeartRateGraph extends WatchUi.Drawable {
         var lastPointY = null;
         
         while (sample != null) {
+            pointX = ((3600 - now.subtract(sample.when).value()) * scaleX);
+
             if (sample.heartRate == ActivityMonitor.INVALID_HR_SAMPLE) {
-                lastPointX = null;
+                lastPointX = pointX;
                 lastPointY = null;
             }
             else {
-                pointX = ((3600 - now.subtract(sample.when).value()) * scaleX);
                 pointY = (height - 2) - ((sample.heartRate - min_hr) * scaleY);
 
                 if (lastPointX == null || lastPointY == null) {
@@ -165,6 +166,7 @@ class HeartRateGraph extends WatchUi.Drawable {
             
             lastsample = sample;
             lastsampleX = pointX;
+
             sample = hrIterator.next();
         }
     }
