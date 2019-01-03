@@ -90,7 +90,7 @@ class BigDigitsView extends WatchUi.WatchFace {
         
         today_sunrise = today_suntimes.get("sunrise");
         today_sunset = today_suntimes.get("sunset");
-        tomorrow_sunrise = tomorrow_suntimes.get("sunset");
+        tomorrow_sunrise = tomorrow_suntimes.get("sunrise");
 
         last_suntimes = Time.today();
     }
