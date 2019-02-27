@@ -11,7 +11,7 @@ class HeartRateGraph extends WatchUi.Drawable {
     var lastfg;
     var lastbg;
     var lastupdate;
-    var lastsample;
+    var lastsample_when;
     var lastsampleX;
     var buffer;
     var scaleX;
@@ -46,14 +46,14 @@ class HeartRateGraph extends WatchUi.Drawable {
             lastfg = fg;
             lastbg = bg;
 
-            lastsample = null;
+            lastsample_when = null;
         }
         else if (lastupdate != null && now.subtract(lastupdate).value() < 55) {
             return;
         }
         
-        if (lastsample) {
-            duration = now.subtract(lastsample.when);
+        if (lastsample_when) {
+            duration = now.subtract(lastsample_when);
         }
         else {
             duration = new Time.Duration(3600);
@@ -95,20 +95,20 @@ class HeartRateGraph extends WatchUi.Drawable {
             /* Scale has changed.  Reset values and recurse to force a full redraw */
 
             scaleY = current_scaleY;
-            lastsample = null;
+            lastsample_when = null;
 
             update();
         }
 
         lastupdate = now;
 
-        if (lastsample == null) {
+        if (lastsample_when == null) {
             dc = buffer.getDc();
             dc.setColor(fg, bg);
             dc.clear();
         }
         else {
-            var new_lastsampleX = ((3600 - now.subtract(lastsample.when).value()) * scaleX);
+            var new_lastsampleX = ((3600 - now.subtract(lastsample_when).value()) * scaleX);
             var offset = Math.floor(lastsampleX - new_lastsampleX);
 
             if (offset < 1) {
@@ -164,7 +164,7 @@ class HeartRateGraph extends WatchUi.Drawable {
                 lastPointY = pointY;
             }
             
-            lastsample = sample;
+            lastsample_when = sample.when;
             lastsampleX = pointX;
 
             sample = hrIterator.next();
